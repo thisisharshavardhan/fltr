@@ -48,7 +48,6 @@ app.put('/todos/:id', async (req, res) => {
         { text: req.body.text },
         { new: true }
     );
-    if (!todo) return res.status(404).send('To-do item not found.');
     res.json(todo);
 });
 
@@ -56,7 +55,6 @@ app.put('/todos/:id', async (req, res) => {
 app.delete('/todos/:id', async (req, res) => {
     console.log("delete request received");
     const todo = await Todo.findByIdAndDelete(req.params.id);
-    if (!todo) return res.status(404).send('To-do item not found.');
     res.status(204).send();
 });
 
